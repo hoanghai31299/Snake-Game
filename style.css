@@ -1,0 +1,50 @@
+:root {
+    --headColor: rgb(253, 255, 151);
+    --bodyColor: #fff;
+    --gameBoardColor: rgb(22, 18, 18);
+    --bodyImage: url("https://image.freepik.com/free-vector/abstract-shapes-pattern-design_1197-21.jpg");
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    min-width: 100vw;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.game {
+    border: 5px solid rgb(48, 48, 48);
+    width: 80vmin;
+    height: 80vmin;
+    background-color: var(--gameBoardColor);
+    display: grid;
+}
+
+.control {
+    width: 20vmin;
+}
+
+.body.head {
+    background-image: none;
+    background-color: var(--headColor);
+}
+
+.body {
+    /* background-color: rgb(230, 255, 6); */
+    background-image: var(--bodyImage);
+    background-attachment: fixed;
+}
+
+.food {
+    border: 0.2px black solid;
+    background-color: rgb(201, 53, 53);
+    border-radius: 50%;
+    position: relative;
+}
