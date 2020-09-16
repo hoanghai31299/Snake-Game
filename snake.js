@@ -1,5 +1,6 @@
 import { getDirection, resetDirection } from "./direction.js";
-import { GAME_BOARD_SIZE } from "./config.js";
+import { getGameBoardSize } from "./config.js";
+const GAME_BOARD_SIZE = getGameBoardSize();
 let snake = [
   {
     x: Math.round(GAME_BOARD_SIZE / 2),
@@ -24,9 +25,9 @@ const update = () => {
 const outOfGameBoard = (pos) => {
   return (
     pos.x <= 0 ||
-    pos.x > GAME_BOARD_SIZE ||
+    pos.x >= GAME_BOARD_SIZE + 1 ||
     pos.y <= 0 ||
-    pos.y > GAME_BOARD_SIZE
+    pos.y >= GAME_BOARD_SIZE + 1
   );
 };
 const checkWin = () => {
@@ -63,5 +64,8 @@ const snakeGrowUp = (long) => {
   for (let i = 1; i <= long; i++) {
     snake = [...snake, { ...snake[snake.length - 1] }];
   }
+};
+const getSnakeLength = () => {
+  return snake.length;
 };
 export { draw, update, onSnake, snakeGrowUp, reset, checkWin };

@@ -1,5 +1,5 @@
 import { onSnake, snakeGrowUp } from "./snake.js";
-import { GAME_BOARD_SIZE, SEGMENT_EACH_FOOD } from "./config.js";
+import { getGameBoardSize, getSegmentEachFood } from "./config.js";
 
 let food = getRandomPosition();
 function getRandomPosition() {
@@ -7,17 +7,20 @@ function getRandomPosition() {
 
   //loop check if food on snake body
   while (newPos == null || onSnake(newPos)) {
-    let x = Math.floor(Math.random() * GAME_BOARD_SIZE) + 1;
-    let y = Math.floor(Math.random() * GAME_BOARD_SIZE) + 1;
+    let x = Math.floor(Math.random() * getGameBoardSize()) + 1;
+    let y = Math.floor(Math.random() * getGameBoardSize()) + 1;
     newPos = { x, y };
   }
   return newPos;
 }
-
+let diem = 1;
+const score = document.querySelector(".score");
 const update = () => {
   if (onSnake(food)) {
+    diem++;
+    score.innerHTML = diem * 100;
     food = getRandomPosition();
-    snakeGrowUp(SEGMENT_EACH_FOOD);
+    snakeGrowUp(getSegmentEachFood());
   }
 };
 
@@ -28,5 +31,8 @@ const draw = (board) => {
   foodElement.style.gridColumnStart = food.x;
   board.appendChild(foodElement);
 };
-
-export { draw, update };
+const reset = () => {
+  diem = 0;
+  score.innerHTML = diem * 100;
+};
+export { draw, update, reset };
